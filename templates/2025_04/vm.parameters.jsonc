@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "deployPrefix": { // Provide a unique value for this deployment
+            "value": "TestVM"
+        },
+        "hciApiVersion": { // Do not change. 
+            "value": "2024-08-01-preview"
+        },
+        "customLocationId": { // Custom location for Azure Local cluster.
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/blabla-HostedResources-blabla/providers/Microsoft.ExtendedLocation/customLocations/dev10-blabla-cstm-loc"
+        },           
+        "location": { // Azure region for Azure Local cluster. 
+            "value": "eastus"
+        },
+        "acrImagePath": {  // Update registry and image
+            "value": "acrreg.azurecr.io/ubuntu:22.04.00"
+        },
+        "acrUsername": { // Update registry username
+            "value": "acrreg"
+        },
+        "acrPassword": { // Provide ACR password
+            "value": ""
+        },
+        "adminPassword": { // Leave blank; Use SSH Key
+            "value": ""
+        },
+        "l3nId01": {  // Update networking ARM ID 
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/oam"
+        },
+        "l3nId02": { // Update networking ARM ID 
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/appdata"
+        },
+        "csnId": { // Update CSN ARM ID 
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/ALRS-P1-test/providers/Microsoft.NetworkCloud/cloudServicesNetworks/bsd-csn-alrs"
+        },
+        "vmMemoryMB": {  // Edit to desired value
+            "value": 8192
+        },
+        "vmProcessors": { // Edit to desired value
+            "value": 4
+        },
+        "ssh-keydata": { // Provide SSH key
+            "value": "sshkeydata"
+        }
+  }
+}
