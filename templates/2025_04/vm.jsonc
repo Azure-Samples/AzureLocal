@@ -1,0 +1,220 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "deployPrefix": {
+        "type": "string"
+      },
+      "hciApiVersion": {
+        "type": "string"
+      },
+      "customLocationId": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "acrImagePath": {
+        "type": "string"
+      },
+      "acrUsername": {
+        "type": "string"
+      },
+      "acrPassword": {
+        "type": "securestring"
+      },
+      "adminPassword": {
+        "type": "securestring"
+      },
+      "l3nId01": {
+        "type": "string"
+      },
+      "l3nId02": {
+        "type": "string"
+      },
+      "csnId": {
+        "type": "string"
+      },
+      "vmMemoryMB": {
+        "type": "int"
+      },
+      "vmProcessors": {
+        "type": "int"
+      },
+      "ssh-keydata": {
+        "type": "string"
+      }    
+    },
+    "variables": {
+      "vmName": "[concat(parameters('deployPrefix'), '-vm')]",
+      "galleryImageName": "[concat(parameters('deployPrefix'), '-galleryimage')]",
+      "csnNicName": "[concat(parameters('deployPrefix'), '-csnNic')]",
+      "l3nNicName01": "[concat(parameters('deployPrefix'), '-l3n01')]",
+      "l3nNicName02": "[concat(parameters('deployPrefix'), '-l3n02')]"
+    },
+    "resources": [
+      {
+        "type": "Microsoft.AzureStackHCI/networkInterfaces",
+        "apiVersion": "[parameters('hciApiVersion')]",
+        "name": "[variables('l3nNicName01')]",
+        "location": "[parameters('location')]",
+        "tags": {},
+        "extendedLocation": {
+          "name": "[parameters('customLocationId')]",
+          "type": "CustomLocation"
+        },
+        "properties": {
+          "ipConfigurations": [
+            {
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('l3nId01')]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Microsoft.AzureStackHCI/networkInterfaces",
+        "apiVersion": "[parameters('hciApiVersion')]",
+        "name": "[variables('l3nNicName02')]",
+        "location": "[parameters('location')]",
+        "tags": {},
+        "extendedLocation": {
+          "name": "[parameters('customLocationId')]",
+          "type": "CustomLocation"
+        },
+        "properties": {
+          "ipConfigurations": [
+            {
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('l3nId02')]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Microsoft.AzureStackHCI/networkInterfaces",
+        "apiVersion": "[parameters('hciApiVersion')]",
+        "name": "[variables('csnNicName')]",
+        "location": "[parameters('location')]",
+        "tags": {},
+        "extendedLocation": {
+          "name": "[parameters('customLocationId')]",
+          "type": "CustomLocation"
+        },
+        "properties": {
+          "ipConfigurations": [
+            {
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('csnId')]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Microsoft.AzureStackHCI/galleryImages",
+        "apiVersion": "[parameters('hciApiVersion')]",
+        "extendedLocation": {
+          "name": "[parameters('customLocationId')]",
+          "type": "CustomLocation"
+        },
+        "location": "[parameters('location')]",
+        "tags": {},
+        "name": "[variables('galleryImageName')]",
+        "properties": {
+          "osType": "Linux",
+          "hyperVGeneration": "",
+          "imagePath": "[parameters('acrImagePath')]",
+          "vmImageRepositoryCredentials": {
+            "username": "[parameters('acrUsername')]",
+            "password": "[parameters('acrPassword')]"
+          }
+        }
+      },
+      {
+        "type": "Microsoft.HybridCompute/machines",
+        "apiVersion": "2024-07-10",
+        "name": "[variables('vmName')]",
+        "location": "[parameters('location')]",
+        "tags": {},
+        "kind": "HCI",
+        "identity": {
+          "type": "SystemAssigned"
+        }
+      },
+      {
+        "type": "Microsoft.AzureStackHCI/virtualMachineInstances",
+        "apiVersion": "[parameters('hciApiVersion')]",
+        "name": "default",
+        "extendedLocation": {
+          "name": "[parameters('customLocationId')]",
+          "type": "CustomLocation"
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.HybridCompute/machines', variables('vmName'))]",
+          "[resourceId('Microsoft.AzureStackHci/galleryImages', variables('galleryImageName'))]",
+          "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('csnNicName'))]",
+          "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('l3nNicName01'))]",
+          "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('l3nNicName02'))]"
+        ],
+        "properties": {
+          "hardwareProfile": {
+            "memoryMB": "[parameters('vmMemoryMB')]",
+            "processors": "[parameters('vmProcessors')]",
+            "vmSize": "Custom"
+          },
+          "networkProfile": {
+            "networkInterfaces": [
+              {
+                "id": "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('csnNicName'))]"
+              },
+              {
+                "id": "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('l3nNicName01'))]"
+              },
+              {
+                "id": "[resourceId('Microsoft.AzureStackHci/networkInterfaces', variables('l3nNicName02'))]"
+              }
+            ]
+          },
+          "osProfile": {
+            "adminPassword": "[parameters('adminPassword')]",
+            "adminUsername": "azureuser",
+            "computerName": "[variables('vmName')]",
+            "linuxConfiguration": {
+              "provisionVMAgent": true,
+              "provisionVMConfigAgent": true,
+              "disablePasswordAuthentication": true,
+                "ssh": {
+                  "publicKeys": [
+                    {
+                      "keyData": "[parameters('ssh-keydata')]"
+                    }
+                  ]
+               }
+            }
+          },
+          "securityProfile": {
+            "uefiSettings": {
+              "secureBootEnabled": true
+            },
+            "enableTPM": true
+          },
+          "storageProfile": {
+            "imageReference": {
+              "id": "[resourceId('Microsoft.AzureStackHci/galleryImages', variables('galleryImageName'))]"
+            }
+          }
+        },
+        "scope": "[concat('Microsoft.HybridCompute/machines/', variables('vmName'))]"
+      }
+    ]
+  }
+  
