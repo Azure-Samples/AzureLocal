@@ -1,75 +1,109 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-      "l3Networks_name": {
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "cloudServicesNetworks_name": {
+            "type": "string"
+        },
+        "l3IsolationDomains_name": {
+            "type": "string"
+        },
+        "clusterCustomLocation": {
           "type": "string"
-      },
-      "cloudServicesNetworks_name": {
+        },
+        "l3Networks_name01": {
           "type": "string"
-      },
-      "l3IsolationDomains_name": {
+        },
+        "vlanId01": {
+          "type": "int"
+        },
+        "ipv4Prefix01": {
           "type": "string"
-      },
-      "clusterCustomLocation": {
-        "type": "string"
-      },
-      "vlanId": {
-        "type": "int"
-      },
-      "ipv4Prefix": {
-        "type": "string"
-      },
-      "ipv6Prefix": {
-        "type": "string"
-      }
-  },
-  "variables": {},
-  "resources": [
-      {
-          "type": "Microsoft.NetworkCloud/cloudServicesNetworks",
-          "apiVersion": "2025-02-01",
-          "name": "[parameters('cloudServicesNetworks_name')]",
-          "location": "uksouth",
-          "extendedLocation": {
-              "type": "CustomLocation",
-              "name": "[parameters('clusterCustomLocation')]"
-          },
-          "tags": {},
-          "properties": {
-              "additionalEgressEndpoints": [
-                  {
-                      "category": "customer-provided",
-                      "endpoints": [
-                          {
-                              "domainName": ".azurecr.io",
-                              "port": 443
-                          }
-                      ]
-                  }
-              ],
-              "enableDefaultEgressEndpoints": "True"
-          }
-      },
-      {
+        },
+        "ipv6Prefix01": {
+          "type": "string"
+        },
+        "l3Networks_name02": {
+          "type": "string"
+        },
+        "vlanId02": {
+          "type": "int"
+        },
+        "ipv4Prefix02": {
+          "type": "string"
+        },
+        "ipv6Prefix02": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.NetworkCloud/cloudServicesNetworks",
+            "apiVersion": "2025-02-01",
+            "name": "[parameters('cloudServicesNetworks_name')]",
+            "location": "[parameters('location')]",
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('clusterCustomLocation')]"
+            },
+            "tags": {},
+            "properties": {
+                "additionalEgressEndpoints": [
+                    {
+                        "category": "customer-provided",
+                        "endpoints": [
+                            {
+                                "domainName": ".azurecr.io",
+                                "port": 443
+                            }
+                        ]
+                    }
+                ],
+                "enableDefaultEgressEndpoints": "True"
+            }
+        },
+        {
+            "type": "Microsoft.NetworkCloud/l3Networks",
+            "apiVersion": "2025-02-01",
+            "name": "[parameters('l3Networks_name01')]",
+            "location": "[parameters('location')]",
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('clusterCustomLocation')]"
+            },
+            "tags": {},
+            "properties": {
+                "interfaceName": "[concat('vlan-', parameters('vlanId01'))]",
+                "l3IsolationDomainId": "[resourceId('Microsoft.ManagedNetworkFabric/l3IsolationDomains', parameters('l3IsolationDomains_name'))]",
+                "ipAllocationType": "DualStack",
+                "ipv4ConnectedPrefix": "[parameters('ipv4Prefix01')]",
+                "ipv6ConnectedPrefix": "[parameters('ipv6Prefix01')]",
+                "vlan": "[parameters('vlanId01')]"
+            }
+        },
+        {
           "type": "Microsoft.NetworkCloud/l3Networks",
           "apiVersion": "2025-02-01",
-          "name": "[parameters('l3Networks_name')]",
-          "location": "uksouth",
+          "name": "[parameters('l3Networks_name02')]",
+          "location": "[parameters('location')]",
           "extendedLocation": {
               "type": "CustomLocation",
               "name": "[parameters('clusterCustomLocation')]"
           },
           "tags": {},
           "properties": {
-              "interfaceName": "[concat('vlan-', parameters('vlanId'))]",
+              "interfaceName": "[concat('vlan-', parameters('vlanId02'))]",
               "l3IsolationDomainId": "[resourceId('Microsoft.ManagedNetworkFabric/l3IsolationDomains', parameters('l3IsolationDomains_name'))]",
               "ipAllocationType": "DualStack",
-              "ipv4ConnectedPrefix": "[parameters('ipv4Prefix')]",
-              "ipv6ConnectedPrefix": "[parameters('ipv6Prefix')]",
-              "vlan": "[parameters('vlanId')]"
+              "ipv4ConnectedPrefix": "[parameters('ipv4Prefix02')]",
+              "ipv6ConnectedPrefix": "[parameters('ipv6Prefix02')]",
+              "vlan": "[parameters('vlanId02')]"
           }
       }
-
-  ]
-}
+  
+    ]
+  }
