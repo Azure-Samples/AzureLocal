@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "deployPrefix": {
-            "value": "VM0501"
+            "value": "TestVM"
         },
         "hciApiVersion": {
             "value": "2024-08-01-preview"
         },
         "customLocationId": {
-            "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/dev10-0c66652bd1b6-HostedResources-65D4B144/providers/Microsoft.ExtendedLocation/customLocations/dev10-0c66652bd1b6-cstm-loc"
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/blabla-HostedResources-blabla/providers/Microsoft.ExtendedLocation/customLocations/dev10-blabla-cstm-loc"
         },           
         "location": {
             "value": "eastus"
         },
         "acrImagePath": {
-            "value": "hpereg.azurecr.io/ubuntu:22.04.00"
+            "value": "acrreg.azurecr.io/ubuntu:22.04.00"
         },
         "acrUsername": {
-            "value": "hpereg"
+            "value": "acrreg"
         },
         "acrPassword": {
             "value": ""
@@ -27,13 +27,13 @@
             "value": ""
         },
         "l3nId01": {
-            "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/oam"
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/oam"
         },
         "l3nId02": {
-            "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/appdata"
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/appdata"
         },
         "csnId": {
-            "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/cloudServicesNetworks/bsd-csn-alrs"
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/cloudServicesNetworks/bsd-csn-alrs"
         },
         "vmMemoryMB": {
             "value": 8192
@@ -42,7 +42,7 @@
             "value": 4
         },
         "ssh-keydata": {
-            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+l/W0zF1j+bYVjgJ4m3Vy8gkB6TumkoaYX4BjrexbYrUK/awlO8pXTNU3g5laj5JkgG4H/KvoJtesBt5VgRJzEMUkXP2WsNxzLazYoAlK0sqefv30hQ9SitMk3HpTXStxsiHLfGCC3kK0Nj9dW6WaKRmcPI95o4g+pN4JSZZ+RwQt0GQAVk0FvAah2tBQUuZdtxOYFoROgVv13QXOuTcEYbAuQqnBlkv8C60w17opPGR57GA9OtNVLq3dbOxqdb9GTDKZdC5nWGf91B2I+ON/8g9x2tHXJROGPGUalBPBeCu77q1XPlYGzroQqHIK1KuOuefqdv8hubJf0qtM6r+chRfOi3HJAadFnsJf3UjSOOLAJekLFKcvQTim2D2cneei5d/WapzxfXnB2uRAs4Fnw1DmPs9rwit4pU/M5K6f8uWi7BMF5ePN0X499otAvf6KPjci+ltjUutPMpgLP2MX59MAexH30HTkiOtjZlmPDerkMOhDFhcKx2YmIJ4k204hktSDnEYvdDqLrG9DMIE6V/r687ruNBSjMyqxgCKgnqrhRFdjCWBdZiqK3ZWDsCaIAYqZjp/CmHCcSCrknkbt3M2/wr+uTOC9ZKYCjJ4Q86blanraKru7kC8pX0m1p0AN2hTUXHKKFxrCypZyN+80KJ7rNxw+chrfi75++pGwIw== arcVM.pem"
+            "value": "sshkeydata"
         }
   }
 }
