@@ -6,6 +6,7 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 
 | To deploy this OS image on Azure Local machine... | Download OS image from this location |
 |------------------|------------------|
+| 10.2411.3.2 or earlier | Download image from [https://aka.ms/hcireleaseimage/2411.3](https://aka.ms/hcireleaseimage/2411.3). |
 | 10.2503.0.13 | Download 2503 image from the Azure portal. |
 | 11.2504.1001.19 | Download this image from [https://aka.ms/hcireleaseimage/11.2504](https://aka.ms/hcireleaseimage/11.2504) |
 | 12.2504.1001.20 | Download 2504 image from the Azure portal. |
