@@ -3,37 +3,37 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
       "cloudServicesNetworks_name": { // Provide a name for the cloud services network
-          "value": "bsd-csn-alrs"
+          "value": ""
       },
       "l3IsolationDomains_name": {  // Provide the name of the fabric isolation domain that contains the internal network that will correspond with this network
-          "value": "ALRS-ISDL3"
+          "value": ""
       },
       "clusterCustomLocation": {  // Provide the custom location for this instance
           "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/dev10-0c66652bd1b6-HostedResources-65D4B144/providers/Microsoft.ExtendedLocation/customLocations/dev10-0c66652bd1b6-cstm-loc"
       },
       "l3Networks_name01": { // Provide a name for the internal network
-      "value": "oam"
+      "value": ""
       },
       "vlanId01": { // Provide a VLAN ID that is unique on the instance
-          "value": 2050
+          "value": 9999
       },
       "ipv4Prefix01": {  // Provide an ipv4 prefix that is unique on the instance
-        "value": "10.131.16.0/24"
+        "value": ""
       },
       "ipv6Prefix01": {  // Provide an ipv6 prefix that is unique on the instance
-        "value": "fda0:d59c:ea0a:10::/64"
+        "value": ""
       },
       "l3Networks_name02": { // Provide a name for the internal network
-      "value": "appdata"
+      "value": ""
       }, 
       "vlanId02": { // Provide the vlan ID, ipV4 and ipV6 prefixes that correspond with the internal network on the isolation domain
-          "value": 2051
+          "value": 9999
       },
       "ipv4Prefix02": {
-        "value": "10.131.17.0/24"
+        "value": ""
       },
       "ipv6Prefix02": {
-        "value": "fda0:d59c:ea0a:11::/64"
+        "value": ""
       },
       "location": { // Provide the location for the instance 
           "value": "eastus"

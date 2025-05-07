@@ -1,52 +1,52 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-      "l3IsolationDomain_name": {  // Provide a name for the isolation domain
-          "value": "ALRS-ISDL3"
-      },
-      "networkFabrics_id": { // Provide the appropriate network fabric resource ID for the instance
-          "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/dev10nfrg04112025/providers/Microsoft.ManagedNetworkFabric/networkFabrics/dev10nf0411"
-      },
-      "external_Uplink_name": { // Provide a name for the external network uplink
-          "value": "ALRS-OptionB-BSD-test"
-      },
-      "optionBProperties": { // These values are specific to uplink configuration, do not change unless instructed
-          "value": {
-          "importRouteTargets": [
-              "65129:58"
-          ],
-          "exportRouteTargets": [
-              "65021:20053"
-          ]
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "l3IsolationDomain_name": {  // Provide a name for the isolation domain
+            "value": ""
+        },
+        "networkFabrics_id": { // Provide the appropriate network fabric resource ID for the instance
+            "value": "/subscriptions/fca2e8ee-1179-48b8-9532-428ed0873a2e/resourceGroups/dev10nfrg04112025/providers/Microsoft.ManagedNetworkFabric/networkFabrics/dev10nf0411"
+        },
+        "external_Uplink_name": { // Provide a name for the external network uplink
+            "value": ""
+        },
+        "optionBProperties": { // These values are specific to uplink configuration, do not change unless instructed
+            "value": {
+            "importRouteTargets": [
+                "65129:58"
+            ],
+            "exportRouteTargets": [
+                "65021:20053"
+            ]
+          }
+        },
+        "l3InternalNetwork_name01": {  // Provide a name for the internal network
+            "value": ""
+        },
+        "vlanId01": { // Provide a VLAN ID that is unique on the instance
+            "value": 9999
+        },
+          "ipv4Prefix01": {  // Provide an ipv4 prefix that is unique on the instance
+            "value": ""
+        },
+          "ipv6Prefix01": {  // Provide an ipv6 prefix that is unique on the instance
+            "value": ""
+        },
+        "l3InternalNetwork_name02": {  // Provide a name for the internal network
+        "value": ""
+        },
+        "vlanId02": { // Provide a VLAN ID that is unique on the instance
+            "value": 9999
+        },
+        "ipv4Prefix02": {  // Provide an ipv4 prefix that is unique on the instance
+            "value": ""
+        },
+        "ipv6Prefix02": {  // Provide an ipv6 prefix that is unique on the instance
+            "value": ""
+        },
+        "location": {
+            "value": "eastus" // Provide the location for the instance 
         }
-      },
-      "l3InternalNetwork_name01": {  // Provide a name for the internal network
-          "value": "oam"
-      },
-      "vlanId01": { // Provide a VLAN ID that is unique on the instance
-          "value": 2050
-      },
-        "ipv4Prefix01": {  // Provide an ipv4 prefix that is unique on the instance
-          "value": "10.131.16.0/24"
-      },
-        "ipv6Prefix01": {  // Provide an ipv6 prefix that is unique on the instance
-          "value": "fda0:d59c:ea0a:10::/64"
-      },
-      "l3InternalNetwork_name02": {  // Provide a name for the internal network
-      "value": "appdata"
-      },
-      "vlanId02": { // Provide a VLAN ID that is unique on the instance
-          "value": 2051
-      },
-      "ipv4Prefix02": {  // Provide an ipv4 prefix that is unique on the instance
-          "value": "10.131.17.0/24"
-      },
-      "ipv6Prefix02": {  // Provide an ipv6 prefix that is unique on the instance
-          "value": "fda0:d59c:ea0a:11::/64"
-      },
-      "location": {
-          "value": "eastus" // Provide the location for the instance 
-      }
+    }
   }
-}
