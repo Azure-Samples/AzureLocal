@@ -15,5 +15,5 @@ az deployment group create -c -g <RG name> -c --template-file vm.jsonc --paramet
 '''
 ## CREATE A NEW SSHKEY
 '''
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/my_vm_key
+ssh-keygen -t rsa -b 4096 -f my_vm_key
 '''
