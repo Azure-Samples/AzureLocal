@@ -11,7 +11,7 @@ az networkfabric l3domain update-admin-state --resource-name "<L3-isd-name>" -g 
 az deployment group create -c -g <RG name> -c --template-file nc_networking.jsonc --parameters nc_networking.parameters.jsonc				
 ```
 ## CREATE VM
-'''
+```
 az deployment group create -c -g <RG name> -c --template-file vm.jsonc --parameters vm.parameters.jsonc
 ```
 ```
