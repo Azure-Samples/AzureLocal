@@ -10,8 +10,8 @@ az deployment group create -c -g <RG name> -c --template-file nc_networking.json
 '''
 ## CREATE VM
 '''
-az deployment group create -c -g <RG name> -c --template-file vm.jsonc --parameters vm.parameters.jsonc				
-    az ssh arc --local-user azureuser --resource-group <RG name> --name <vm-name> --private-key-file <vm-key.pub>				
+az deployment group create -c -g <RG name> -c --template-file vm.jsonc --parameters vm.parameters.jsonc
+az ssh arc --local-user azureuser --resource-group <RG name> --name <vm-name> --private-key-file <vm-key.pub>				
 '''
 ## CREATE A NEW SSHKEY
 '''
