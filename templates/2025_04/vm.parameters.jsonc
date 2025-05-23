@@ -9,16 +9,16 @@
             "value": "2024-08-01-preview"
         },
         "customLocationId": {
-            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/blabla-HostedResources-blabla/providers/Microsoft.ExtendedLocation/customLocations/dev10-blabla-cstm-loc"
+            "value": ""
         },           
         "location": {
             "value": "eastus"
         },
         "acrImagePath": {
-            "value": "acrreg.azurecr.io/ubuntu:22.04.00"
+            "value": ""
         },
         "acrUsername": {
-            "value": "acrreg"
+            "value": ""
         },
         "acrPassword": {
             "value": ""
@@ -27,13 +27,13 @@
             "value": ""
         },
         "l3nId01": {
-            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/oam"
+            "value": ""
         },
         "l3nId02": {
-            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/l3Networks/appdata"
+            "value": ""
         },
         "csnId": {
-            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/bsd-ALRS-P1-test/providers/Microsoft.NetworkCloud/cloudServicesNetworks/bsd-csn-alrs"
+            "value": ""
         },
         "vmMemoryMB": {
             "value": 8192
@@ -42,7 +42,7 @@
             "value": 4
         },
         "ssh-keydata": {
-            "value": "sshkeydata"
+            "value": ""
         }
   }
 }
