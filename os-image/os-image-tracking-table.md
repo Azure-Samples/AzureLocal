@@ -5,7 +5,13 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 
 | To deploy this OS image on Azure Local machine... | Download OS image from this location |
 |------------------|------------------|
+<<<<<<< HEAD
 | 12.2509.1001.22 | Download 2509 image from [https://aka.ms/hcireleaseimage/2509](https://aka.ms/hcireleaseimage/2509). |
+=======
+| 12.2510.1002.88 | Download 2510 image from the Azure portal. |
+| 11.2510.1002.87 | Download this image from [https://aka.ms/hcireleaseimage/11.2510](https://aka.ms/hcireleaseimage/11.2510). |
+| 12.2509.1001.22 | Download 2509 image from the Azure portal. |
+>>>>>>> main
 | 11.2509.1001.21 | Download this image from [https://aka.ms/hcireleaseimage/11.2509](https://aka.ms/hcireleaseimage/11.2509). |
 | 12.2508.1001.52 | Download 2508 image from [https://aka.ms/hcireleaseimage/2508](https://aka.ms/hcireleaseimage/2508). |
 | 11.2508.1001.51 | Download this image from [https://aka.ms/hcireleaseimage/11.2508](https://aka.ms/hcireleaseimage/11.2508). |
