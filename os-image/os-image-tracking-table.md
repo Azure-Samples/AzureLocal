@@ -22,5 +22,5 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 | 11.2505.1001.22 | [Download image](https://aka.ms/hcireleaseimage/11.2505) |
 | 12.2504.1001.20 | [Download image](https://aka.ms/hcireleaseimage/2504) |
 | 11.2504.1001.19 | [Download image](https://aka.ms/hcireleaseimage/11.2504) |
-| 10.2503.0.13 | Download the 2503 image from the Azure portal. |
+| 10.2503.0.13 | [Download image](https://aka.ms/hcireleaseimage) |
 | 10.2411.3.2 or earlier | [Download image](https://aka.ms/hcireleaseimage/2411.3) |
