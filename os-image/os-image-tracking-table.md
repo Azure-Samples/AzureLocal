@@ -5,8 +5,11 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 
 | OS image version | Download link |
 |------------------|------------------|
-| 12.2510.1002.88 | [Download image](https://aka.ms/hcireleaseimage/2510) |
-| 11.2510.1002.87 | [Download image](https://aka.ms/hcireleaseimage/11.2510) |
+| 12.2601.1002.503 |[Download image](https://aka.ms/hcireleaseimage/2601) |
+| 12.2512.1002.16 |[Download image](https://aka.ms/hcireleaseimage/2512) |
+| 12.2511.1002.502 |[Download image](https://aka.ms/hcireleaseimage/2511) |
+| 12.2510.1002.529 | [Download image](https://aka.ms/hcireleaseimage/2510) |
+| 11.2510.1002.93 | [Download image](https://aka.ms/hcireleaseimage/11.2510) |
 | 12.2509.1001.22 | [Download image](https://aka.ms/hcireleaseimage/2509) |
 | 11.2509.1001.21 | [Download image](https://aka.ms/hcireleaseimage/11.2509) |
 | 12.2508.1001.52 | [Download image](https://aka.ms/hcireleaseimage/2508) |
