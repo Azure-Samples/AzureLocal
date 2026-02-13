@@ -21,6 +21,6 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 | 12.2505.1001.23 | [Download image](https://aka.ms/hcireleaseimage/2505) |
 | 11.2505.1001.22 | [Download image](https://aka.ms/hcireleaseimage/11.2505) |
 | 12.2504.1001.20 | [Download image](https://aka.ms/hcireleaseimage/2504) |
-| 11.2504.1001.19 <br>Supersedes: 11.2504.1001.19 | [Download image](https://aka.ms/hcireleaseimage/11.2504) |
+| 11.2504.1001.21 <br>Supersedes: 11.2504.1001.19 | [Download image](https://aka.ms/hcireleaseimage/11.2504) |
 | 10.2503.0.13 | [Download image](https://aka.ms/hcireleaseimage) |
 | 10.2411.3.2 or earlier | [Download image](https://aka.ms/hcireleaseimage/2411.3) |
