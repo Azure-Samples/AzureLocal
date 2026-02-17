@@ -3,7 +3,7 @@
 
 When you add a machine or repair a machine, make sure to deploy the correct version of OS image to the Azure Local machine. Use the following table to identify the correct OS image version and the download location for your Azure Local machine:
 
-| OS image version | Download link |
+| Solution version | Download OS image location |
 |------------------|------------------|
 | 12.2601.1002.503 <br> 12.2601.1002.38 |[Download image](https://aka.ms/hcireleaseimage/2601) |
 | 12.2512.1002.16 |[Download image](https://aka.ms/hcireleaseimage/2512) |
