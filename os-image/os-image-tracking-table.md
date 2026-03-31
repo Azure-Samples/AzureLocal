@@ -5,6 +5,7 @@ When you add a machine or repair a machine, make sure to deploy the correct vers
 
 | Solution version | OS image download location |
 |------------------|------------------|
+| 12.2603.1002.15 |[Download image](https://aka.ms/hcireleaseimage/2603) |
 | 12.2602.1002.501 <br> 12.2602.1002.7 |[Download image](https://aka.ms/hcireleaseimage/2602) |
 | 12.2601.1002.503 <br> 12.2601.1002.38 |[Download image](https://aka.ms/hcireleaseimage/2601) |
 | 12.2512.1002.16 |[Download image](https://aka.ms/hcireleaseimage/2512) |
