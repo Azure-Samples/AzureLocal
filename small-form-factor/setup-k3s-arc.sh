@@ -18,11 +18,33 @@ set -euo pipefail
 # Prerequisites:
 #   - Linux device with root/sudo access
 #   - Internet connectivity
-#   - An Azure subscription (you'll be prompted to log in via device code)
+#   - An Azure subscription with a managed identity assigned to this device
+#
+# Managed Identity Setup (run once from a workstation before this script):
+#
+#   1. Enable system-assigned managed identity on the Arc-connected machine:
+#        az connectedmachine update \
+#          --resource-group <resource-group> \
+#          --name <arc-machine-name> \
+#          --set identity.type="SystemAssigned"
+#
+#   2. Retrieve the managed identity principal ID:
+#        principalId=$(az connectedmachine show \
+#          --resource-group <resource-group> \
+#          --name <arc-machine-name> \
+#          --query identity.principalId -o tsv)
+#
+#   3. Assign Contributor on the subscription (for Arc onboarding):
+#        az role assignment create \
+#          --assignee "$principalId" \
+#          --role Contributor \
+#          --scope "/subscriptions/<subscription-id>"
+#
+#   Then pass the principal ID to this script via --mi-object-id "$principalId"
 #
 # Usage:
 #   chmod +x setup-k3s-arc.sh
-#   sudo ./setup-k3s-arc.sh
+#   sudo ./setup-k3s-arc.sh [options]
 #
 # Or override defaults with environment variables:
 #   RESOURCE_GROUP=myRG CLUSTER_NAME=myCluster LOCATION=eastus sudo -E ./setup-k3s-arc.sh
@@ -37,14 +59,71 @@ ONBOARDING_TIMEOUT="${ONBOARDING_TIMEOUT:-1200}"
 AZ_CLI_IMAGE="${AZ_CLI_IMAGE:-mcr.microsoft.com/azure-cli:latest}"
 AZ_STATE_DIR="/tmp/az-cli-state"          # persists Azure login state between runs
 
+AZ_AUTH_MODE="${AZ_AUTH_MODE:-auto}"      # auto | managed-identity | device-code
+AZ_SUBSCRIPTION_ID="${AZ_SUBSCRIPTION_ID:-}"
+AZ_TENANT_ID="${AZ_TENANT_ID:-}"
+AZ_MI_CLIENT_ID="${AZ_MI_CLIENT_ID:-}"
+AZ_MI_OBJECT_ID="${AZ_MI_OBJECT_ID:-}"
+AZ_MI_RESOURCE_ID="${AZ_MI_RESOURCE_ID:-}"
+CUSTOM_LOCATIONS_OID="${CUSTOM_LOCATIONS_OID:-}"
+
 # ── Helper functions ─────────────────────────────────────────────────────────
 log()  { echo -e "\n\033[1;32m[INFO]\033[0m  $*"; }
 warn() { echo -e "\n\033[1;33m[WARN]\033[0m  $*"; }
 err()  { echo -e "\n\033[1;31m[ERROR]\033[0m $*" >&2; exit 1; }
 
+usage() {
+  cat <<'EOF'
+Usage:
+  sudo ./setup-k3s-arc.sh [options]
+
+Options:
+  -g, --resource-group <name>      Azure resource group for connected cluster
+  -n, --cluster-name <name>        Arc connected cluster name
+  -l, --location <region>          Azure region
+      --subscription-id <id>       Azure subscription ID
+      --tenant-id <id>             Azure tenant ID
+      --auth-mode <mode>           auto | managed-identity | device-code
+      --mi-client-id <id>          User-assigned managed identity client ID
+      --mi-object-id <id>          User-assigned managed identity object ID
+      --mi-resource-id <id>        User-assigned managed identity resource ID
+      --custom-locations-oid <id>  Custom Locations service principal object ID
+      --onboarding-timeout <secs>  Timeout for az connectedk8s connect
+  -h, --help                       Show this help
+
+Examples:
+  sudo ./setup-k3s-arc.sh \
+    --resource-group rg-sff-se100 \
+    --cluster-name se100-edge-ai \
+    --location eastus \
+    --auth-mode managed-identity \
+    --subscription-id <sub-id>
+EOF
+}
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -g|--resource-group)      RESOURCE_GROUP="$2";      shift 2 ;;
+      -n|--cluster-name)        CLUSTER_NAME="$2";         shift 2 ;;
+      -l|--location)            LOCATION="$2";             shift 2 ;;
+      --subscription-id)        AZ_SUBSCRIPTION_ID="$2";  shift 2 ;;
+      --tenant-id)              AZ_TENANT_ID="$2";         shift 2 ;;
+      --auth-mode)              AZ_AUTH_MODE="$2";         shift 2 ;;
+      --mi-client-id)           AZ_MI_CLIENT_ID="$2";      shift 2 ;;
+      --mi-object-id)           AZ_MI_OBJECT_ID="$2";      shift 2 ;;
+      --mi-resource-id)         AZ_MI_RESOURCE_ID="$2";    shift 2 ;;
+      --custom-locations-oid)   CUSTOM_LOCATIONS_OID="$2"; shift 2 ;;
+      --onboarding-timeout)     ONBOARDING_TIMEOUT="$2";   shift 2 ;;
+      -h|--help)                usage; exit 0 ;;
+      *)                        err "Unknown option: $1" ;;
+    esac
+  done
+}
+
 # Run az CLI commands inside a container via K3s's bundled containerd.
-# Mounts kubeconfig and a persistent Azure state dir so login survives
-# across invocations.
+# Mounts kubeconfig, a persistent Azure state dir, and the Arc agent socket
+# so managed identity login works via the local IMDS endpoint.
 run_az() {
   local container_id="az-cli-$(date +%s%N)"
   k3s ctr run \
@@ -52,6 +131,9 @@ run_az() {
     --net-host \
     --mount "type=bind,src=/etc/rancher/k3s/k3s.yaml,dst=/root/.kube/config,options=rbind:ro" \
     --mount "type=bind,src=${AZ_STATE_DIR},dst=/root/.azure,options=rbind:rw" \
+    --mount "type=bind,src=/var/opt/azcmagent,dst=/var/opt/azcmagent,options=rbind:ro" \
+    --env IMDS_ENDPOINT=http://localhost:40342 \
+    --env IDENTITY_ENDPOINT=http://localhost:40342/metadata/identity/oauth2/token \
     "${AZ_CLI_IMAGE}" \
     "${container_id}" \
     az "$@"
@@ -66,6 +148,9 @@ run_az_interactive() {
     --net-host \
     --mount "type=bind,src=/etc/rancher/k3s/k3s.yaml,dst=/root/.kube/config,options=rbind:ro" \
     --mount "type=bind,src=${AZ_STATE_DIR},dst=/root/.azure,options=rbind:rw" \
+    --mount "type=bind,src=/var/opt/azcmagent,dst=/var/opt/azcmagent,options=rbind:ro" \
+    --env IMDS_ENDPOINT=http://localhost:40342 \
+    --env IDENTITY_ENDPOINT=http://localhost:40342/metadata/identity/oauth2/token \
     "${AZ_CLI_IMAGE}" \
     "${container_id}" \
     az "$@"
@@ -117,10 +202,8 @@ configure_kubeconfig() {
     err "K3s kubeconfig not found at $k3s_kubeconfig"
   fi
 
-  # Set up kubeconfig so kubectl and az CLI can find it
   export KUBECONFIG="$k3s_kubeconfig"
 
-  # Also make it accessible for non-root usage later
   local user_home="${SUDO_USER:+$(eval echo ~${SUDO_USER})}"
   if [[ -n "$user_home" ]]; then
     mkdir -p "$user_home/.kube"
@@ -130,12 +213,58 @@ configure_kubeconfig() {
     log "Kubeconfig copied to $user_home/.kube/config"
   fi
 
-  # Verify connectivity
   kubectl get nodes || err "Cannot reach the Kubernetes API server."
   log "Local kube API server access confirmed."
 }
 
-# ── Step 3: Pull Azure CLI container image + install extension + login ────────
+# ── Step 3: Pull Azure CLI container image + authenticate + setup ─────────────
+authenticate_azure() {
+  local -a mi_args=()
+  local mi_selector_count=0
+
+  [[ -n "${AZ_MI_CLIENT_ID}" ]]   && { mi_args+=(--client-id "${AZ_MI_CLIENT_ID}");     (( mi_selector_count++ )); }
+  [[ -n "${AZ_MI_OBJECT_ID}" ]]   && { mi_args+=(--object-id "${AZ_MI_OBJECT_ID}");     (( mi_selector_count++ )); }
+  [[ -n "${AZ_MI_RESOURCE_ID}" ]] && { mi_args+=(--resource-id "${AZ_MI_RESOURCE_ID}"); (( mi_selector_count++ )); }
+
+  if (( mi_selector_count > 1 )); then
+    err "Set only one of --mi-client-id, --mi-object-id, --mi-resource-id."
+  fi
+
+  local -a tenant_args=()
+  [[ -n "${AZ_TENANT_ID}" ]] && tenant_args+=(--tenant "${AZ_TENANT_ID}")
+
+  case "${AZ_AUTH_MODE}" in
+    managed-identity|mi)
+      log "Authenticating with managed identity..."
+      run_az login --identity "${mi_args[@]}" "${tenant_args[@]}" -o none
+      ;;
+    device-code)
+      log "Please log in to Azure using a device code..."
+      run_az_interactive login --use-device-code "${tenant_args[@]}"
+      ;;
+    auto)
+      if run_az account show &>/dev/null; then
+        log "Already logged in to Azure."
+      elif run_az login --identity "${mi_args[@]}" "${tenant_args[@]}" -o none; then
+        log "Managed identity login succeeded."
+      else
+        warn "Managed identity unavailable. Falling back to device code."
+        run_az_interactive login --use-device-code "${tenant_args[@]}"
+      fi
+      ;;
+    *)
+      err "Invalid --auth-mode: ${AZ_AUTH_MODE}. Use auto, managed-identity, or device-code."
+      ;;
+  esac
+
+  if [[ -n "${AZ_SUBSCRIPTION_ID}" ]]; then
+    log "Setting subscription to ${AZ_SUBSCRIPTION_ID}..."
+    run_az account set --subscription "${AZ_SUBSCRIPTION_ID}"
+  fi
+
+  run_az account show --query "{name:name,id:id,tenantId:tenantId,user:user.name}" -o table
+}
+
 setup_azure_cli() {
   log "Step 3/6 — Setting up Azure CLI container and connectedk8s extension..."
 
@@ -151,18 +280,11 @@ setup_azure_cli() {
     log "Azure CLI version confirmed." || err "Failed to run az CLI from container."
 
   # Install the connectedk8s extension inside a persistent state dir
-  # The extension is stored in ~/.azure so it persists across runs
   log "Installing connectedk8s extension..."
   run_az extension add --name connectedk8s --yes 2>/dev/null || \
     run_az extension update --name connectedk8s --yes 2>/dev/null || true
 
-  # Log in to Azure via device code (no browser on the device)
-  if ! run_az account show &>/dev/null; then
-    log "Please log in to Azure using a device code..."
-    run_az_interactive login --use-device-code
-  else
-    log "Already logged in to Azure."
-  fi
+  authenticate_azure
 
   # Ensure the resource group exists
   if ! run_az group show --name "$RESOURCE_GROUP" &>/dev/null 2>&1; then
@@ -177,10 +299,15 @@ setup_azure_cli() {
 connect_to_arc() {
   log "Step 4/6 — Connecting K3s cluster to Azure Arc..."
 
-  # Check if already connected
-  if run_az connectedk8s show -g "$RESOURCE_GROUP" -n "$CLUSTER_NAME" &>/dev/null 2>&1; then
-    warn "Cluster '$CLUSTER_NAME' is already connected to Azure Arc. Skipping."
-    return
+  local existing_cluster
+  existing_cluster="$(run_az connectedk8s list \
+    --resource-group "$RESOURCE_GROUP" \
+    --query "[?name=='${CLUSTER_NAME}'].name | [0]" \
+    -o tsv)"
+
+  if [[ -n "$existing_cluster" ]]; then
+    warn "Cluster '$CLUSTER_NAME' already connected to Azure Arc."
+    warn "Re-running onboarding to ensure azure-arc agents are installed."
   fi
 
   run_az connectedk8s connect \
@@ -201,6 +328,26 @@ connect_to_arc() {
 # ── Step 5: Enable Azure RBAC on the cluster ─────────────────────────────────
 enable_azure_rbac() {
   log "Step 5/6 — Enabling Azure RBAC on the Arc-enabled cluster..."
+
+  # Resolve Custom Locations service principal OID (needed for custom-locations feature)
+  local custom_locations_oid="${CUSTOM_LOCATIONS_OID}"
+  if [[ -z "$custom_locations_oid" ]]; then
+    custom_locations_oid="$(run_az ad sp show \
+      --id bc313c14-388c-4e7d-a58e-70017303ee3b \
+      --query id -o tsv 2>/dev/null || true)"
+  fi
+  if [[ -z "$custom_locations_oid" ]]; then
+    err "Could not resolve Custom Locations OID. Pass --custom-locations-oid or set CUSTOM_LOCATIONS_OID."
+  fi
+
+  # Enable cluster-connect and custom-locations features
+  log "Enabling Arc features: cluster-connect, custom-locations..."
+  run_az connectedk8s enable-features \
+    -n "$CLUSTER_NAME" \
+    -g "$RESOURCE_GROUP" \
+    --features cluster-connect custom-locations \
+    --custom-locations-oid "$custom_locations_oid" \
+    --kube-config /root/.kube/config
 
   # Get the cluster's managed identity principal ID
   local cluster_msi_id
@@ -278,7 +425,6 @@ configure_rbac_webhooks() {
   - authorization-mode=Node,RBAC,Webhook
 ARGS
   else
-    # Append the webhook configuration to the K3s config
     cat >> "$k3s_config" <<'EOF'
 
 # Azure Arc RBAC webhook configuration
@@ -316,6 +462,8 @@ EOF
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 main() {
+  parse_args "$@"
+
   echo "============================================================"
   echo "  K3s + Azure Arc Connected Cluster Setup"
   echo "============================================================"
@@ -323,6 +471,7 @@ main() {
   echo "  Resource Group : $RESOURCE_GROUP"
   echo "  Cluster Name   : $CLUSTER_NAME"
   echo "  Location       : $LOCATION"
+  echo "  Auth Mode      : $AZ_AUTH_MODE"
   echo ""
 
   check_root
