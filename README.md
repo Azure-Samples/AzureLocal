@@ -30,6 +30,18 @@ Follow these steps to download the Security Baseline CSV:
 1. Select the file you want to download.
 1. In the top-right corner, select the **Download raw file** icon. This action saves the file onto your local computer.
 
+## Disconnected operations samples
+
+Sample artifacts for monitoring Azure Local clusters running in disconnected operations mode, such as the **point-in-time-metrics.json** Grafana dashboard.
+
+Follow these steps to download a disconnected operations sample:
+
+1. Go to the **disconnected-operations** folder.
+1. Select the file you want to download.
+1. In the top-right corner, select the **Download raw file** icon. This action saves the file onto your local computer.
+
+For prerequisites and import steps, see the [disconnected-operations README](disconnected-operations/README.md). For full setup and configuration steps, see [Use Grafana for point-in-time metrics to monitor disconnected operations for Azure Local](https://learn.microsoft.com/azure/azure-local/manage/disconnected-operations-grafana-monitoring) on Microsoft Learn.
+
 ## License
 
 Refer to [LICENSE](LICENSE) for all Licensing information.

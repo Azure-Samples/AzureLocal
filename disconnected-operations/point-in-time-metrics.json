@@ -1,0 +1,3961 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AZURE_LOCAL MONITOR",
+      "label": "Azure Local Monitor",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "microsoft-azurelocalobservability-datasource",
+      "pluginName": "Monitor for Azure Local with Disconnected Operations"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "microsoft-azurelocalobservability-datasource",
+      "name": "Monitor for Azure Local with Disconnected Operations",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.3.3"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "panels": [],
+      "title": "Processor Information",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Processor_Information/Percentage_Processor_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "CoreNumber",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Processor Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 6
+      },
+      "id": 101,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Processor_Information/Percentage_User_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "CoreNumber",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% User Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 11
+      },
+      "id": 102,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Processor_Information/Percentage_Privileged_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "CoreNumber",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Privileged Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "id": 103,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Processor_Information/Interrupts/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "CoreNumber",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Interrupts/sec",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 2,
+      "panels": [],
+      "title": "Logical Disk Information",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 22
+      },
+      "id": 104,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Percentage_Free_Space",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Free Space",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 27
+      },
+      "id": 105,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Percentage_Disk_Read_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Disk Read Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 32
+      },
+      "id": 106,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Percentage_Disk_Write_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Disk Write Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 37
+      },
+      "id": 107,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Percentage_Idle_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Idle Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 42
+      },
+      "id": 108,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_Queue_Length",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk Queue Length",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 47
+      },
+      "id": 109,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_Read_Queue_Length",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk Read Queue Length",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 52
+      },
+      "id": 110,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_Write_Queue_Length",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk Write Queue Length",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 57
+      },
+      "id": 111,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Percentage_Disk_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "% Disk Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 62
+      },
+      "id": 112,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_sec/Transfer",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk sec/Transfer",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 67
+      },
+      "id": 113,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_sec/Read",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk sec/Read",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 72
+      },
+      "id": 114,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Avg_Disk_sec/Write",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Avg. Disk sec/Write",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 77
+      },
+      "id": 115,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Bytes/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Bytes/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 82
+      },
+      "id": 116,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Read_Bytes/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Read Bytes/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 87
+      },
+      "id": 117,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Write_Bytes/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Write Bytes/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 92
+      },
+      "id": 118,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Reads/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Reads/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 97
+      },
+      "id": 119,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Writes/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Writes/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 102
+      },
+      "id": 120,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogicalDisk/Disk_Transfers/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true,
+          "dimensionFilters": [
+            {
+              "dimensionName": "DiskName",
+              "filters": [
+                "_Total"
+              ],
+              "operator": "eq"
+            }
+          ]
+        }
+      ],
+      "title": "Disk Transfers/sec",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 107
+      },
+      "id": 3,
+      "panels": [],
+      "title": "System",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdhms",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 108
+      },
+      "id": 121,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "System/System_Up_Time",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "System Up Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 113
+      },
+      "id": 122,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "System/Processes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Processes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 118
+      },
+      "id": 123,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "System/Context_Switches/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Context Switches/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 123
+      },
+      "id": 124,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "System/Processor_Queue_Length",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Processor Queue Length",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 128
+      },
+      "id": 4,
+      "panels": [],
+      "title": "Memory",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 129
+      },
+      "id": 125,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Available_Bytes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Available Bytes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 134
+      },
+      "id": 126,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Percentage_Committed_Bytes_In_Use",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "% Committed Bytes In Use",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 139
+      },
+      "id": 127,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Committed_Bytes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Committed Bytes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 144
+      },
+      "id": 128,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Commit_Limit",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Commit Limit",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 149
+      },
+      "id": 129,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Cache_Bytes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Cache Bytes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 154
+      },
+      "id": 130,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Pool_Paged_Bytes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Pool Paged Bytes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 159
+      },
+      "id": 131,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Pool_Nonpaged_Bytes",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Pool Nonpaged Bytes",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 164
+      },
+      "id": 132,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Page_Faults/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Page Faults/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 169
+      },
+      "id": 133,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/Pages/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Pages/sec",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 174
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Network Bytes",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 175
+      },
+      "id": 134,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Bytes_Total/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Bytes Total/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 180
+      },
+      "id": 135,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Bytes_Received/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Bytes Received/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 185
+      },
+      "id": 136,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Bytes_Sent/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Bytes Sent/sec",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 190
+      },
+      "id": 6,
+      "panels": [],
+      "title": "Network Interface",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 191
+      },
+      "id": 137,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Received_Errors",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Received Errors",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 196
+      },
+      "id": 138,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Received_Discarded",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Received Discarded",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 201
+      },
+      "id": 139,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Outbound_Errors",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Outbound Errors",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 206
+      },
+      "id": 140,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Outbound_Discarded",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Outbound Discarded",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 211
+      },
+      "id": 141,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Received/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Received/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 8,
+        "y": 216
+      },
+      "id": 142,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets_Sent/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets Sent/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 221
+      },
+      "id": 143,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Network_Interface/Packets/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Packets/sec",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 226
+      },
+      "id": 7,
+      "panels": [],
+      "title": "TCP-IP Data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 227
+      },
+      "id": 144,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "TCPv4/Connection_Failures",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "TCPv4 / Connection Failures",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 232
+      },
+      "id": 145,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "TCPv4/Connections_Reset",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "TCPv4 / Connections Reset",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 237
+      },
+      "id": 146,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "TCPv6/Connection_Failures",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "TCPv6 / Connection Failures",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 242
+      },
+      "id": 147,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "TCPv6/Connections_Reset",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "TCPv6 / Connections Reset",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 247
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Winsock and ETW Logs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 248
+      },
+      "id": 148,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Microsoft_Winsock_BSP/Dropped_Datagrams/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Dropped Datagrams/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 253
+      },
+      "id": 149,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Microsoft_Winsock_BSP/Rejected_Connections/sec",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Rejected Connections/sec",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 258
+      },
+      "id": 150,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogCollectionFileCount",
+          "metricNamespace": "azure.local.operator.logcollection",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "LogCollectionFileCount",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 263
+      },
+      "id": 151,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "LogCollectionExceptionCount",
+          "metricNamespace": "azure.local.operator.logcollection",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "LogCollectionExceptionCount",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 268
+      },
+      "id": 152,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "Memory/TotalPhysicalMemory",
+          "metricNamespace": "azure.local.operator.health",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Total Physical Memory",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 273
+      },
+      "id": 11,
+      "panels": [],
+      "title": "Services & Scenarios",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 99
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 274
+      },
+      "id": 157,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "ServiceHealthy",
+          "metricNamespace": "azure.local.operator.services",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Healthy Services Ratio",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "microsoft-azurelocalobservability-datasource",
+        "uid": "${DS_AZURE_LOCAL MONITOR}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "Unhealthy"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "Healthy"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 279
+      },
+      "id": 158,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "aggregation": "Average",
+          "datasource": {
+            "type": "microsoft-azurelocalobservability-datasource",
+            "uid": "${DS_AZURE_LOCAL MONITOR}"
+          },
+          "metricName": "ScenarioHealthy",
+          "metricNamespace": "azure.local.operator.scenario",
+          "refId": "A",
+          "resource": "",
+          "timeGrain": "Auto",
+          "useDefaultResource": true
+        }
+      ],
+      "title": "Scenario Health",
+      "type": "stat"
+    }
+  ],
+  "refresh": "15m",
+  "schemaVersion": 39,
+  "tags": [
+    "aldo",
+    "health",
+    "metrics"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Point in Time Metrics",
+  "uid": "aldo-pit-metrics-v5",
+  "version": 1,
+  "weekStart": ""
+}
