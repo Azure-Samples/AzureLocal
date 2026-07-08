@@ -1,15 +1,17 @@
 ## Create Edge Machines for an Azure Local cluster
 
-GPU Management for Azure Local relies on **Edge Machine** resources, one per physical node in your cluster, to surface GPU inventory and health in Azure. These resources are normally provisioned for you as part of an upcoming platform release.
+GPU Management for Azure Local relies on **Edge Machine** resources, one per physical node in your cluster, to surface GPU inventory and health in Azure. These resources are normally provisioned for you, but for preview scenarios you can create them yourself.
 
-If you'd like to try GPU Management before that release is available, this PowerShell [module](./CreateEdgeMachinesForCluster.psm1) lets you create the Edge Machine resources yourself. Point it at your cluster and it will discover the cluster's nodes and create a matching Edge Machine resource for each one.
+This PowerShell [module](./CreateEdgeMachinesForCluster.psm1) does this for you: point it at your cluster and it will discover the cluster's nodes and create a matching Edge Machine resource for each one.
+
+> **Note:** This module is intended for preview and evaluation scenarios only.
 
 ### Prerequisites
-- The Az PowerShell module ( `Az.Accounts`  5.3.1 or later)
-- Sign in with `Connect-AzAccount` and select the subscription that contains your Azure Local cluster ( `Set-AzContext -Subscription <id>` )
-- The **Contributor** or **Azure Stack HCI Administrator** role on the cluster's resource group, which grants the permissions needed to create the Edge Machine resources
-- Azure Local medium cluster with version 12.2604.1003 or later
-- The script must be run from a machine that has connectivity to the Azure control plane (ARM)
+- The Az PowerShell module (`Az.Accounts` 5.3.1 or later).
+- Sign in with `Connect-AzAccount -Tenant <tenantId>` and select the subscription that contains your Azure Local cluster (`Set-AzContext -Subscription <id>`).
+- The **Contributor** or **Azure Stack HCI Administrator** role on the cluster's resource group, which grants the permissions needed to create the Edge Machine resources.
+- Azure Local medium cluster with version 12.2604.1003 or later.
+- The script must be run from a machine that has connectivity to the Azure control plane (ARM).
 
 ### Usage
 
