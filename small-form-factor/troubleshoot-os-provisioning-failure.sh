@@ -7,7 +7,7 @@ set -e
 # Input parameters
 SUBSCRIPTION_ID=<subscription-id> 
 RESOURCE_GROUP=<resource-group>
-PROVISIONED_MACHINE_NAME=edge-machine-name>
+PROVISIONED_MACHINE_NAME=<edge-machine-name>
 
 # Validate inputs
 if [ -z "$SUBSCRIPTION_ID" ] || [ -z "$RESOURCE_GROUP" ] || [ -z "$PROVISIONED_MACHINE_NAME" ]; then
