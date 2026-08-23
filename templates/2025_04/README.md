@@ -21,3 +21,8 @@ az ssh arc --local-user azureuser --resource-group <RG name> --name <vm-name> --
 ```
 ssh-keygen -t rsa -b 4096 -f vm_key
 ```
+
+## CREATE A NEW GALLERY IMAGE ONLY
+```
+az deployment group create -c -g <RG name> -c --template-file gallery_only.jsonc --parameters gallery.parameters.jsonc
+```
