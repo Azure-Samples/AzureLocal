@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deployPrefix": {
+      "type": "string"
+    },
+    "hciApiVersion": {
+      "type": "string"
+    },
+    "customLocationId": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "acrImagePath": {
+      "type": "string"
+    },
+    "acrUsername": {
+      "type": "string"
+    },
+    "acrPassword": {
+      "type": "securestring"
+    }
+  },
+  "variables": {
+    "galleryImageName": "[concat(parameters('deployPrefix'), '-galleryimage')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.AzureStackHCI/galleryImages",
+      "apiVersion": "[parameters('hciApiVersion')]",
+      "extendedLocation": {
+        "name": "[parameters('customLocationId')]",
+        "type": "CustomLocation"
+      },
+      "location": "[parameters('location')]",
+      "tags": {},
+      "name": "[variables('galleryImageName')]",
+      "properties": {
+        "osType": "Linux",
+        "hyperVGeneration": "",
+        "imagePath": "[parameters('acrImagePath')]",
+        "vmImageRepositoryCredentials": {
+          "username": "[parameters('acrUsername')]",
+          "password": "[parameters('acrPassword')]"
+        }
+      }
+    }
+   
+  ]
+}
+

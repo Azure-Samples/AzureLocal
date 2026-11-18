@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "deployPrefix": {
+            "value": "TestVM"
+        },
+        "hciApiVersion": {
+            "value": "2024-08-01-preview"
+        },
+        "customLocationId": {
+            "value": "/subscriptions/abcd-1234-5678-efgh/resourceGroups/blabla-HostedResources-blabla/providers/Microsoft.ExtendedLocation/customLocations/dev10-blabla-cstm-loc"
+        },           
+        "location": {
+            "value": "eastus"
+        },
+        "acrImagePath": {
+            "value": "acrreg.azurecr.io/ubuntu:22.04.00"
+        },
+        "acrUsername": {
+            "value": "acrreg"
+        },
+        "acrPassword": {
+            "value": ""
+        }
+
+  }
+}
